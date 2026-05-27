@@ -24,20 +24,20 @@ variable "subnet_config_map" {
 }
 
 
-variable "security_group_config_map" {
-  type = map(object({
-    name = string
-  }))
+# variable "security_group_config_map" {
+#   type = map(object({
+#     name = string
+#   }))
 
-  validation {
-    condition = alltrue([
-      for security_group_config in value(var.security_group_config_map) :
-      contains(["public", "private"], security_group_config.name)
-    ])
+#   validation {
+#     condition = alltrue([
+#       for security_group_config in value(var.security_group_config_map) :
+#       contains(["public", "private"], security_group_config.name)
+#     ])
 
-    error_message = "Only public and private names are allowed in the security group names."
-  }
-}
+#     error_message = "Only public and private names are allowed in the security group names."
+#   }
+# }
 
 
 # variable "ec2_instance_config_map" {
