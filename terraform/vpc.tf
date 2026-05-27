@@ -30,7 +30,7 @@ resource "aws_route_table" "rtb_public_subnets_in" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.internet_gateway_for_example_vpc.id
+    gateway_id = aws_internet_gateway.internet_gateway_for_main_vpc.id
   }
 
   tags = { Name = "rtb_public_subnets" }
@@ -42,10 +42,10 @@ resource "aws_route_table" "rtb_public_subnets_in" {
 resource "aws_route_table" "rtb_private_subnets_outbound_access" {
   vpc_id = aws_vpc.main_vpc.id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    
-  }
+  # route {
+  #   cidr_block = "0.0.0.0/0"
+  #   gateway_id = aws_nat_gateway.nat_gateway.id
+  # }
 
   tags = { Name = "rtb_private_subnets_outbound_access" }
 
