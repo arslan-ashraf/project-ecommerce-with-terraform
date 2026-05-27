@@ -11,6 +11,10 @@
 #   allocation_id = aws_eip.nat_gateway_eip.id
 #   subnet_id     = aws_subnet.subnets_in_main_vpc["AZ_a_public_subnet"].id
 
+#   # availability_mode defaults to zonal, other option is "regional" for region
+#   # level high availability of the NAT Gateway, but higher costs
+#   availability_mode = "zonal"   
+
 #   tags = { Name = "nat_gateway" }
 
 #   # Explicit dependency to ensure proper ordering during creation/destruction
