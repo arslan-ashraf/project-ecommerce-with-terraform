@@ -47,7 +47,7 @@ resource "aws_route_table_association" "rtb_associations_public_subnets" {
   # }
 
   count         = length(var.route_table_associations_config_list)
-  subnet_id      = aws_subnet.subnets_in_example_vpc[count.index.subnet].id
+  subnet_id      = aws_subnet.subnets_in_main_vpc[count.index.subnet].id
   route_table_id = aws_route_table.rtb_public_subnets.id
 }
 
