@@ -37,16 +37,16 @@ variable "rtb_associations_public_subnets_1_list" {
   }
 }
 
-variable "rtb_associations_private_subnets_1_list" {
+variable "rtb_associations_private_subnets_for_compute_list" {
   type = list(string)
 
   validation {
     condition = alltrue([
-      for subnet_string in var.rtb_associations_private_subnets_1_list :
-      strcontains(subnet_string, "private_subnet_1")
+      for subnet_string in var.rtb_associations_private_subnets_for_compute_list :
+      strcontains(subnet_string, "private_subnet_for_compute")
     ])
 
-    error_message = "Only private subnets 1 in us-east-1a and us-east-1b AZs are allowed."
+    error_message = "Only private subnets for compute in us-east-1a and us-east-1b AZs are allowed."
   }
 }
 
