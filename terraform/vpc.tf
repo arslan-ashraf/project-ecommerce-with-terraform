@@ -87,3 +87,13 @@ resource "aws_route_table" "rtb_private_subnets_no_outbound_access" {
 
   tags = { Name = "rtb_private_subnets_no_outbound_access" }
 }
+
+resource "aws_route_table_association" "rtb_associations_private_subnets_2" {
+  count          = length(var.rtb_associations_private_subnets_2_list)
+
+  subnet_id      = aws_subnet.subnets_in_main_vpc[
+    var.rtb_associations_private_subnets_2_list[count.index]
+  ].id
+
+  route_table_id = aws_route_table.rtb_private_subnets_no_outbound_access.id
+}
