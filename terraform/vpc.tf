@@ -3,9 +3,9 @@ resource "aws_vpc" "main_vpc" {
   tags       = { Name = "main_vpc" }
 }
 
-resource "aws_internet_gateway" "internet_gateway_for_example_vpc" {
-  vpc_id = aws_vpc.example_vpc.id
+resource "aws_internet_gateway" "internet_gateway_for_main_vpc" {
+  vpc_id = aws_vpc.main_vpc.id
 
-  tags = { Name = "internet_gateway_for_example_vpc" }
+  tags = { Name = "internet_gateway_for_main_vpc" }
 
 }
