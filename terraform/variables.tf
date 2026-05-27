@@ -24,6 +24,13 @@ variable "subnet_config_map" {
 }
 
 
+variable "route_table_associations_config_list" {
+  type = list(object({
+    subnet = string
+  }))
+}
+
+
 # variable "security_group_config_map" {
 #   type = map(object({
 #     name = string

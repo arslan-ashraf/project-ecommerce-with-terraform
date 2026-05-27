@@ -25,7 +25,7 @@ resource "aws_subnet" "subnets_in_main_vpc" {
 ############################################################################
 
 # route table for the public subnets
-resource "aws_route_table" "rtb_public_subnets_in" {
+resource "aws_route_table" "rtb_public_subnets" {
   vpc_id = aws_vpc.main_vpc.id
 
   route {
@@ -35,6 +35,12 @@ resource "aws_route_table" "rtb_public_subnets_in" {
 
   tags = { Name = "rtb_public_subnets" }
 
+}
+
+resource "aws_route_table_association" "rtb_associations_public_subnets" {
+  
+  subnet_id      = aws_subnet.subnets_in_example_vpc["AZ_a_public_subnet_1"].id
+  route_table_id = aws_route_table.rtb_public_subnets.id
 }
 
 # route table for private subnet with outbound internet access through NAT Gateway

@@ -30,6 +30,11 @@ subnet_config_map = {
 
 }
 
+route_table_associations_config_list = [
+  { subnet = "AZ_a_public_subnet_1" }, 
+  { subnet = "AZ_b_public_subnet_1" }
+]
+
 # security_group_config_map = {
 #   public_traffic_sg  = { name = "public_traffic_sg" }
 #   private_traffic_sg = { name = "private_traffic_sg" }
