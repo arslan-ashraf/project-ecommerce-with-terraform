@@ -7,7 +7,3 @@ security_group_config_map = {
   public_traffic_sg  = { name = "public_traffic_sg" }
   private_traffic_sg = { name = "private_traffic_sg" }
 }
-
-ec2_instance_config_map = {
-  
-}

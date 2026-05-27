@@ -29,29 +29,29 @@ variable "security_group_config_map" {
 }
 
 
-variable "ec2_instance_config_map" {
-  type = map(object({
-    instance_type = string
-    ami = string
-    subnet_name = optional(string, "private_subnet")
-    security_group = string
-  }))
+# variable "ec2_instance_config_map" {
+#   type = map(object({
+#     instance_type = string
+#     ami = string
+#     subnet_name = optional(string, "private_subnet")
+#     security_group = string
+#   }))
 
-  validation {
-    condition = alltrue([
-      for ec2_instance_config in values(var.ec2_instance_config_map) :
-      contains(["t2.nano"], ec2_instance_config.instance_type)
-    ])
+#   validation {
+#     condition = alltrue([
+#       for ec2_instance_config in values(var.ec2_instance_config_map) :
+#       contains(["t2.nano"], ec2_instance_config.instance_type)
+#     ])
 
-    error_message = "Only t2.nano instances are allowed."
-  }
+#     error_message = "Only t2.nano instances are allowed."
+#   }
 
-  validation {
-    condition = alltrue([
-      for ec2_instance_config in values(var.ec2_instance_config_map) :
-      contains(["ubuntu"], ec2_instance_config.ami)
-    ])
+#   validation {
+#     condition = alltrue([
+#       for ec2_instance_config in values(var.ec2_instance_config_map) :
+#       contains(["ubuntu"], ec2_instance_config.ami)
+#     ])
 
-    error_message = "Only \"ubuntu\" AMIs are allowed."
-  }
-}
+#     error_message = "Only \"ubuntu\" AMIs are allowed."
+#   }
+# }
