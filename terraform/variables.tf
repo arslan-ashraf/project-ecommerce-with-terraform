@@ -1,14 +1,25 @@
 variable "subnet_config_map" {
   type = map(object({
     cidr_block = string 
+    availability_zone = string
   }))
 
   validation {
     condition = alltrue([
-      for subnet_config in values(var.subnet_config_map) : can(cidrnetmask(subnet_config.cidr_block))
+      for subnet_config in values(var.subnet_config_map) : 
+      can(cidrnetmask(subnet_config.cidr_block))
     ])
 
     error_message = "CIDR Error: At least one of the privded CIDR blocks is invalid."
+  }
+
+  validation {
+    condition = alltrue([
+      for subnet_config in values(var.subnet_config_map) : 
+      contains(["us-east-1a", "us-east-1b"], subnet_config.availability_zone)
+    ])
+
+    error_message = "Only us-east-1a and us-east-1b AZs are allowed."
   }
 }
 
