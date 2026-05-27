@@ -40,6 +40,15 @@ variable "ec2_instance_config_map" {
   validation {
     condition = alltrue([
       for ec2_instance_config in values(var.ec2_instance_config_map) :
+      contains(["t2.nano"], ec2_instance_config.instance_type)
+    ])
+
+    error_message = "Only t2.nano instances are allowed."
+  }
+
+  validation {
+    condition = alltrue([
+      for ec2_instance_config in values(var.ec2_instance_config_map) :
       contains(["ubuntu"], ec2_instance_config.ami)
     ])
 
