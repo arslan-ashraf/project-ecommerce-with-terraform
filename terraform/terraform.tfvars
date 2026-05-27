@@ -30,14 +30,19 @@ subnet_config_map = {
 
 }
 
-rtb_associations_public_subnet_1_list = [
+rtb_associations_public_subnets_1_list = [
   "AZ_a_public_subnet_1", 
   "AZ_b_public_subnet_1"
 ]
 
-rtb_associations_private_subnet_1_list = [
+rtb_associations_private_subnets_1_list = [
   "AZ_a_private_subnet_1", 
   "AZ_b_private_subnet_1"
+]
+
+rtb_associations_private_subnets_2_list = [
+  "AZ_a_private_subnet_2", 
+  "AZ_b_private_subnet_2"
 ]
 
 # security_group_config_map = {
