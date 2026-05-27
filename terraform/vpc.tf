@@ -50,7 +50,7 @@ resource "aws_route_table_association" "rtb_associations_public_subnets" {
 
 
 ############################################################################
-######### PUBLIC SUBNET ROUTE TABLE W/ OUTBOUND ACCESS & ATTACHMENT ########
+####### PRIVATE SUBNET ROUTE TABLE WITH OUTBOUND ACCESS & ATTACHMENT #######
 ############################################################################
 
 # route table for private subnet with outbound internet access through NAT Gateway
@@ -68,7 +68,7 @@ resource "aws_route_table" "rtb_private_subnets_outbound_access" {
 
 
 ############################################################################
-###### PUBLIC SUBNET ROUTE TABLE WITH NO OUTBOUND ACCESS & ATTACHMENT ######
+##### PRIVATE SUBNET ROUTE TABLE WITH NO OUTBOUND ACCESS & ATTACHMENT ######
 ############################################################################
 
 resource "aws_route_table" "rtb_private_subnets_no_outbound_access" {

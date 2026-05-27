@@ -37,6 +37,19 @@ variable "rtb_associations_public_subnet_1_list" {
   }
 }
 
+variable "rtb_associations_private_subnet_1_list" {
+  type = list(string)
+
+  validation {
+    condition = alltrue([
+      for subnet_string in var.rtb_associations_public_subnet_1_list :
+      strcontains(subnet_string, "private_subnet_1")
+    ])
+
+    error_message = "Only private subnets 1 in us-east-1a and us-east-1b AZs are allowed."
+  }
+}
+
 
 # variable "security_group_config_map" {
 #   type = map(object({

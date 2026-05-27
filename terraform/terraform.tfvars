@@ -35,6 +35,11 @@ rtb_associations_public_subnet_1_list = [
   "AZ_b_public_subnet_1"
 ]
 
+rtb_associations_private_subnet_1_list = [
+  "AZ_a_private_subnet_1", 
+  "AZ_b_private_subnet_1"
+]
+
 # security_group_config_map = {
 #   public_traffic_sg  = { name = "public_traffic_sg" }
 #   private_traffic_sg = { name = "private_traffic_sg" }
