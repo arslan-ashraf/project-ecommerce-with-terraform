@@ -24,16 +24,16 @@ variable "subnet_config_map" {
 }
 
 
-variable "rtb_associations_public_subnets_1_list" {
+variable "rtb_associations_public_subnets_list" {
   type = list(string)
 
   validation {
     condition = alltrue([
-      for subnet_string in var.rtb_associations_public_subnets_1_list :
-      strcontains(subnet_string, "public_subnet_1")
+      for subnet_string in var.rtb_associations_public_subnets_list :
+      strcontains(subnet_string, "public_subnet")
     ])
 
-    error_message = "Only public subnets 1 in us-east-1a and us-east-1b AZs are allowed."
+    error_message = "Only public subnets in us-east-1a and us-east-1b AZs are allowed."
   }
 }
 

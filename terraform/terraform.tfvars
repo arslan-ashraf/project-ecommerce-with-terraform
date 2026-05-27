@@ -1,7 +1,7 @@
 subnet_config_map = {
 
   # AZ: us-east-1a
-  AZ_a_public_subnet_1 = {
+  AZ_a_public_subnet = {
     cidr_block        = "10.0.1.0/24"
     availability_zone = "us-east-1a"
   }
@@ -15,7 +15,7 @@ subnet_config_map = {
   }
 
   # AZ: us-east-1b
-  AZ_b_public_subnet_1 = {
+  AZ_b_public_subnet = {
     cidr_block        = "10.0.11.0/24"
     availability_zone = "us-east-1b"
   }
@@ -30,9 +30,9 @@ subnet_config_map = {
 
 }
 
-rtb_associations_public_subnets_1_list = [
-  "AZ_a_public_subnet_1", 
-  "AZ_b_public_subnet_1"
+rtb_associations_public_subnets_list = [
+  "AZ_a_public_subnet", 
+  "AZ_b_public_subnet"
 ]
 
 rtb_associations_private_subnets_for_compute_list = [
