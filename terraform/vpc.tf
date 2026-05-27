@@ -37,7 +37,6 @@ resource "aws_route_table" "rtb_public_subnets_in" {
 
 }
 
-
 # route table for private subnet with outbound internet access through NAT Gateway
 resource "aws_route_table" "rtb_private_subnets_outbound_access" {
   vpc_id = aws_vpc.main_vpc.id
