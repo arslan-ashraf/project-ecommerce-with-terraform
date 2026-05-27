@@ -20,9 +20,9 @@ resource "aws_subnet" "subnets_in_main_vpc" {
   tags = { Name = each.key }
 }
 
-################################################
-############### 3 ROUTE TABLES #################
-################################################
+############################################################################
+#################### 3 ROUTE TABLES & ATTACHMENTS ##########################
+############################################################################
 
 # route table for the public subnets
 resource "aws_route_table" "rtb_public_subnets_in" {
@@ -48,4 +48,10 @@ resource "aws_route_table" "rtb_private_subnets_outbound_access" {
 
   tags = { Name = "rtb_private_subnets_outbound_access" }
 
+}
+
+resource "aws_route_table" "rtb_private_subnets_no_outbound_access" {
+  vpc_id = aws_vpc.main_vpc.id
+
+  tags = { Name = "rtb_private_subnets_no_outbound_access" }
 }
