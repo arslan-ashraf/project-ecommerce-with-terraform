@@ -30,7 +30,7 @@ subnet_config_map = {
 
 }
 
-route_table_associations_subnet_list = [
+rtb_associations_public_subnet_1_list = [
   "AZ_a_public_subnet_1", 
   "AZ_b_public_subnet_1"
 ]
