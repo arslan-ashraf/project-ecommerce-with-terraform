@@ -1,1 +1,4 @@
 simple.sh
+
+terraform/.terraform
+terraform/.terraform.lock.hcl

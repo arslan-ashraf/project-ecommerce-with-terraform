@@ -9,3 +9,7 @@ resource "aws_internet_gateway" "internet_gateway_for_main_vpc" {
   tags = { Name = "internet_gateway_for_main_vpc" }
 
 }
+
+resource "aws_subnet" "subnets_in_main_vpc" {
+  
+}
