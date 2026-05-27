@@ -67,7 +67,7 @@ resource "aws_route_table" "rtb_private_subnets_outbound_access" {
 
 }
 
-resource "aws_route_table_association" "rtb_associations_private_subnets_1" {
+resource "aws_route_table_association" "rtb_associations_private_subnets_for_compute" {
   count          = length(var.rtb_associations_private_subnets_for_compute_list)
 
   subnet_id      = aws_subnet.subnets_in_main_vpc[
@@ -88,11 +88,11 @@ resource "aws_route_table" "rtb_private_subnets_no_outbound_access" {
   tags = { Name = "rtb_private_subnets_no_outbound_access" }
 }
 
-resource "aws_route_table_association" "rtb_associations_private_subnets_2" {
-  count          = length(var.rtb_associations_private_subnets_2_list)
+resource "aws_route_table_association" "rtb_associations_private_subnets_for_database" {
+  count          = length(var.rtb_associations_private_subnets_for_database_list)
 
   subnet_id      = aws_subnet.subnets_in_main_vpc[
-    var.rtb_associations_private_subnets_2_list[count.index]
+    var.rtb_associations_private_subnets_for_database_list[count.index]
   ].id
 
   route_table_id = aws_route_table.rtb_private_subnets_no_outbound_access.id
