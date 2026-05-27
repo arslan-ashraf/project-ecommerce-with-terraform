@@ -20,8 +20,9 @@ resource "aws_subnet" "subnets_in_main_vpc" {
   tags = { Name = each.key }
 }
 
+
 ############################################################################
-#################### 3 ROUTE TABLES & ATTACHMENTS ##########################
+################## PUBLIC SUBNET ROUTE TABLE & ATTACHMENT ##################
 ############################################################################
 
 # route table for the public subnets
@@ -51,9 +52,14 @@ resource "aws_route_table_association" "rtb_associations_public_subnets" {
   subnet_id      = aws_subnet.subnets_in_main_vpc[
     var.route_table_associations_subnet_list[count.index]
   ].id
-  
+
   route_table_id = aws_route_table.rtb_public_subnets.id
 }
+
+
+############################################################################
+######### PUBLIC SUBNET ROUTE TABLE W/ OUTBOUND ACCESS & ATTACHMENT ########
+############################################################################
 
 # route table for private subnet with outbound internet access through NAT Gateway
 resource "aws_route_table" "rtb_private_subnets_outbound_access" {
@@ -67,6 +73,11 @@ resource "aws_route_table" "rtb_private_subnets_outbound_access" {
   tags = { Name = "rtb_private_subnets_outbound_access" }
 
 }
+
+
+############################################################################
+###### PUBLIC SUBNET ROUTE TABLE WITH NO OUTBOUND ACCESS & ATTACHMENT ######
+############################################################################
 
 resource "aws_route_table" "rtb_private_subnets_no_outbound_access" {
   vpc_id = aws_vpc.main_vpc.id
