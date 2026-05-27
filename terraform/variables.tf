@@ -1,12 +1,12 @@
 variable "subnet_config_map" {
   type = map(object({
-    cidr_block = string 
+    cidr_block        = string
     availability_zone = string
   }))
 
   validation {
     condition = alltrue([
-      for subnet_config in values(var.subnet_config_map) : 
+      for subnet_config in values(var.subnet_config_map) :
       can(cidrnetmask(subnet_config.cidr_block))
     ])
 
@@ -15,7 +15,7 @@ variable "subnet_config_map" {
 
   validation {
     condition = alltrue([
-      for subnet_config in values(var.subnet_config_map) : 
+      for subnet_config in values(var.subnet_config_map) :
       contains(["us-east-1a", "us-east-1b"], subnet_config.availability_zone)
     ])
 
@@ -31,7 +31,7 @@ variable "security_group_config_map" {
 
   validation {
     condition = alltrue([
-      for security_group_config in value(var.security_group_config_map) : 
+      for security_group_config in value(var.security_group_config_map) :
       contains(["public", "private"], security_group_config.name)
     ])
 
