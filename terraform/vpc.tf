@@ -13,6 +13,7 @@ resource "aws_internet_gateway" "internet_gateway_for_main_vpc" {
 resource "aws_subnet" "subnets_in_main_vpc" {
   for_each          = var.subnet_config_map
   vpc_id            = aws_vpc.main_vpc.id
+  cidr_block        = each.value.cidr_block
   availability_zone = each.value.availability_zone
 
   tags = { Name = each.key }
