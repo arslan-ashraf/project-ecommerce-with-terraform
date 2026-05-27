@@ -46,8 +46,12 @@ resource "aws_route_table_association" "rtb_associations_public_subnets" {
   #   AZ_b_public_subnet_1 = { subnet = "AZ_b_public_subnet_1" }
   # }
 
-  count         = length(var.route_table_associations_config_list)
-  subnet_id      = aws_subnet.subnets_in_main_vpc[count.index.subnet].id
+  count          = length(var.route_table_associations_subnet_list)
+
+  subnet_id      = aws_subnet.subnets_in_main_vpc[
+    var.route_table_associations_subnet_list[count.index]
+  ].id
+  
   route_table_id = aws_route_table.rtb_public_subnets.id
 }
 

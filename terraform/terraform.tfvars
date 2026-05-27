@@ -30,9 +30,9 @@ subnet_config_map = {
 
 }
 
-route_table_associations_config_list = [
-  { subnet = "AZ_a_public_subnet_1" }, 
-  { subnet = "AZ_b_public_subnet_1" }
+route_table_associations_subnet_list = [
+  "AZ_a_public_subnet_1", 
+  "AZ_b_public_subnet_1"
 ]
 
 # security_group_config_map = {
