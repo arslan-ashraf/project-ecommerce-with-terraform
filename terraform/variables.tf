@@ -42,7 +42,7 @@ variable "rtb_associations_private_subnet_1_list" {
 
   validation {
     condition = alltrue([
-      for subnet_string in var.rtb_associations_public_subnet_1_list :
+      for subnet_string in var.rtb_associations_private_subnet_1_list :
       strcontains(subnet_string, "private_subnet_1")
     ])
 
