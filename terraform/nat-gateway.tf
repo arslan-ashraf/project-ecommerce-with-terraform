@@ -9,7 +9,7 @@
 # # NAT Gateway in the public subnet 
 # resource "aws_nat_gateway" "nat_gateway" {
 #   allocation_id = aws_eip.nat_gateway_eip.id
-#   subnet_id     = aws_subnet.subnets_in_main_vpc["AZ_a_public_subnet_1"].id
+#   subnet_id     = aws_subnet.subnets_in_main_vpc["AZ_a_public_subnet"].id
 
 #   tags = { Name = "nat_gateway" }
 
