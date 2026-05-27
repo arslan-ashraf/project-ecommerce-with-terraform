@@ -67,14 +67,14 @@ resource "aws_route_table" "rtb_private_subnets_outbound_access" {
 
 }
 
-resource "aws_route_table_association" "rtb_associations_public_subnets" {
-  count          = length(var.rtb_associations_public_subnet_1_list)
+resource "aws_route_table_association" "rtb_associations_private_subnets_1" {
+  count          = length(var.rtb_associations_private_subnet_1_list)
 
   subnet_id      = aws_subnet.subnets_in_main_vpc[
-    var.rtb_associations_public_subnet_1_list[count.index]
+    var.rtb_associations_private_subnet_1_list[count.index]
   ].id
 
-  route_table_id = aws_route_table.rtb_public_subnets.id
+  route_table_id = aws_route_table.rtb_private_subnets_outbound_access.id
 }
 
 
