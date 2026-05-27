@@ -23,5 +23,9 @@ variable "security_group_config_map" {
       for security_group_config in value(var.security_group_config_map) : 
       contains(["public", "private"], security_group_config.name)
     ])
+
+    error_message = "Only public and private names are allowed in the security group names."
   }
 }
+
+
