@@ -28,10 +28,13 @@ resource "aws_cognito_user_pool_client" "user_pool_client" {
     "ALLOW_USER_SRP_AUTH" # Required for the hosted UI
   ]
 
-  allowed_oauth_flows_user_pool_only   = true
+  allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["code"]
   allowed_oauth_scopes                 = ["openid", "email", "profile"]
 
+  # Where Cognito redirects users after login/logout
+  # callback_urls = ["http://localhost:3000/callback"]
+  # logout_urls   = ["http://localhost:3000/logout"]
 
   generate_secret = false # Set to false for single page apps
 }
