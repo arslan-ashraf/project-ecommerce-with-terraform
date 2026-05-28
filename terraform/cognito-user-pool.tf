@@ -1,5 +1,5 @@
-resource "aws_cognito_user_pool" "pool" {
-  name = "my-user-pool"
+resource "aws_cognito_user_pool" "user_pool" {
+  name = "user_pool"
 
   # Allows users to use their email as their username
   username_attributes = ["email"]
@@ -17,3 +17,16 @@ resource "aws_cognito_user_pool" "pool" {
   auto_verified_attributes = ["email"]
 }
 
+resource "aws_cognito_user_pool_client" "user_pool_client" {
+  name         = "user_pool_client"
+  user_pool_id = aws_cognito_user_pool.user_pool.id
+
+  # Authentication flows
+  explicit_auth_flows = [
+    "ALLOW_USER_PASSWORD_AUTH",
+    "ALLOW_REFRESH_TOKEN_AUTH",
+    "ALLOW_USER_SRP_AUTH" # Required for the hosted UI
+  ]
+
+  generate_secret = false # Set to false for client-side (web/mobile) apps
+}
