@@ -1,5 +1,5 @@
-resource "aws_cognito_user_pool" "user_pool" {
-  name = "user_pool"
+resource "aws_cognito_user_pool" "ecommerce_user_pool" {
+  name = "ecommerce_user_pool"
 
   # Allows users to use their email as their username
   username_attributes = ["email"]
@@ -19,7 +19,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
 resource "aws_cognito_user_pool_client" "user_pool_client" {
   name         = "user_pool_client"
-  user_pool_id = aws_cognito_user_pool.user_pool.id
+  user_pool_id = aws_cognito_user_pool.ecommerce_user_pool.id
 
   # Authentication flows
   explicit_auth_flows = [
