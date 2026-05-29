@@ -38,7 +38,7 @@ resource "aws_s3_object" "index_html_page" {
   key          = "index.html"
   source       = "index.html"
   content_type = "text/html"
-  etag         = filemd5("index.html")
+  etag         = filemd5("static-files/index.html")
 }
 
 resource "aws_s3_object" "error_html_page" {
@@ -46,5 +46,5 @@ resource "aws_s3_object" "error_html_page" {
   key          = "error.html"
   source       = "error.html"
   content_type = "text/html"
-  etag         = filemd5("error.html")
+  etag         = filemd5("static-files/error.html")
 }
