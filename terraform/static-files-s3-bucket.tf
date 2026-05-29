@@ -5,11 +5,11 @@ resource "aws_s3_bucket" "static_files_s3_bucket" {
 data "aws_iam_policy_document" "cloudfront_s3_policy" {
   statement {
     actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.website_bucket.arn}/*"]
+    resources = ["${aws_s3_bucket.static_files_s3_bucket.arn}/*"]
 
     principals {
       type        = "Service"
-      identifiers = ["://amazonaws.com"]
+      identifiers = ["cloudfront.amazonaws.com"]
     }
 
     condition {
