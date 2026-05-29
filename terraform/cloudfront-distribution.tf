@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = aws_s3_bucket.website_bucket.bucket_regional_domain_name
+    domain_name              = aws_s3_bucket.static_files_s3_bucket.bucket_regional_domain_name
     origin_id                = "S3-Website-Origin"
     origin_access_control_id = aws_cloudfront_origin_access_control.default.id
   }
@@ -33,4 +33,12 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       restriction_type = "none"
     }
   }
+}
+
+
+resource "aws_cloudfront_origin_access_control" "default" {
+  name                              = "s3-oac"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
