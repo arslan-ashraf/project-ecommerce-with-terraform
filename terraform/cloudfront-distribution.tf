@@ -2,11 +2,12 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name              = aws_s3_bucket.static_files_s3_bucket.bucket_regional_domain_name
     origin_id                = "S3-Website-Origin"
-    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.s3_access.id
   }
 
   enabled             = true
   is_ipv6_enabled     = true
+  http_version        = "http2and3"             # default is http2
   default_root_object = "index.html"
 
   default_cache_behavior {
@@ -30,13 +31,17 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "none"
+      restriction_type = "whitelist"
+      locations        = ["US", "CA", "GB", "DE"]
     }
+    # geo_restriction {
+    #   restriction_type = "none"
+    # }
   }
 }
 
 
-resource "aws_cloudfront_origin_access_control" "default" {
+resource "aws_cloudfront_origin_access_control" "s3_access" {
   name                              = "s3-oac"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
